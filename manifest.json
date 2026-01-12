@@ -1,5 +1,5 @@
 {
-  "name": "VocaBoost – IELTS Vocabulary",
+  "name": "Feedback IELTS - VocaBoost",
   "short_name": "VocaBoost",
   "description": "Offline IELTS vocabulary app with flashcards, quizzes, and progress tracking.",
   "start_url": "./index.html",
@@ -27,3 +27,4 @@
   ]
 
 }
+
