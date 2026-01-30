@@ -1,0 +1,2700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Master IELTS vocabulary with interactive flashcards, quizzes, and daily reminders from Feedback IELTS">
+<meta name="keywords" content="IELTS, vocabulary, flashcards, quiz, education, language learning">
+<meta name="author" content="Tanvir Antor - Feedback IELTS">
+
+<!-- PWA Manifest -->
+<link rel="manifest" href="./manifest.json">
+
+<!-- Theme Colors -->
+<meta name="theme-color" content="#ff0f3f">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ff0f3f">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#651595">
+<meta name="msapplication-TileColor" content="#ff0f3f">
+<meta name="msapplication-navbutton-color" content="#ff0f3f">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Apple Touch Icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="152x152" href="./icons/icon-152.png">
+<link rel="apple-touch-icon" sizes="144x144" href="./icons/icon-144.png">
+<link rel="apple-touch-icon" sizes="120x120" href="./icons/icon-128.png">
+<link rel="apple-touch-icon" sizes="114x114" href="./icons/icon-128.png">
+<link rel="apple-touch-icon" sizes="76x76" href="./icons/icon-72.png">
+<link rel="apple-touch-icon" sizes="72x72" href="./icons/icon-72.png">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+
+<!-- Standard Favicon -->
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+<link rel="icon" type="image/png" sizes="96x96" href="./icons/icon-96.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-72.png">
+<link rel="icon" type="image/png" sizes="16x16" href="./icons/icon-72.png">
+<link rel="shortcut icon" href="./icons/icon-192.png">
+
+<!-- Microsoft Tiles -->
+<meta name="msapplication-TileImage" content="./icons/icon-144.png">
+<meta name="msapplication-square70x70logo" content="./icons/icon-72.png">
+<meta name="msapplication-square150x150logo" content="./icons/icon-152.png">
+<meta name="msapplication-square310x310logo" content="./icons/icon-384.png">
+
+<!-- Apple Mobile Web App -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="VocaBoost">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="VocaBoost - IELTS Vocabulary Builder">
+<meta property="og:description" content="Master IELTS vocabulary with interactive flashcards, quizzes, and daily reminders">
+<meta property="og:image" content="./icons/icon-512.png">
+<meta property="og:url" content="https://yourwebsite.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="VocaBoost - IELTS Vocabulary Builder">
+<meta name="twitter:description" content="Master IELTS vocabulary with interactive learning">
+<meta name="twitter:image" content="./icons/icon-512.png">
+
+<title>VocaBoost Lite V2.2 - Feedback IELTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#f8fafc;
+--card:#ffffff;
+--text:#0f172a;
+--accent:#ff0f3f;
+--accent-hover:#e00d38;
+--border:#e2e8f0;
+--success:#10b981;
+--error:#ef4444;
+--warning:#f59e0b;
+--shadow:0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+--shadow-lg:0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+}
+
+[data-theme="dark"]{
+--bg:#0f172a;
+--card:#1a1410;
+--text:#f1f5f9;
+--accent:#651595;
+--accent-hover:#7c1bb0;
+--border:#334155;
+--shadow:0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -1px rgba(0,0,0,0.2);
+--shadow-lg:0 20px 25px -5px rgba(0,0,0,0.3), 0 10px 10px -5px rgba(0,0,0,0.2);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+font-family:'Outfit',sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+transition:background 0.3s ease, color 0.3s ease;
+}
+
+/* HEADER */
+header{
+padding:16px 20px;
+background:var(--card);
+border-bottom:2px solid var(--border);
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:12px;
+box-shadow:var(--shadow);
+position:sticky;
+top:0;
+z-index:100;
+animation:slideDown 0.5s ease;
+}
+
+@keyframes slideDown{
+from{transform:translateY(-100%);opacity:0}
+to{transform:translateY(0);opacity:1}
+}
+
+header h2{
+font-size:22px;
+font-weight:800;
+letter-spacing:-0.5px;
+}
+
+header h2 strong{
+color:var(--accent);
+}
+
+/* BUTTONS */
+button{
+background:var(--accent);
+border:none;
+color:#fff;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-size:15px;
+font-weight:600;
+font-family:'Outfit',sans-serif;
+transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+box-shadow:0 2px 8px rgba(255,15,63,0.3);
+}
+
+[data-theme="dark"] button{
+box-shadow:0 2px 8px rgba(101,21,149,0.4);
+}
+
+button:hover{
+background:var(--accent-hover);
+transform:translateY(-2px);
+box-shadow:0 4px 12px rgba(255,15,63,0.4);
+}
+
+[data-theme="dark"] button:hover{
+box-shadow:0 4px 12px rgba(101,21,149,0.5);
+}
+
+button:active{
+transform:translateY(0) scale(0.98);
+}
+
+button.secondary{
+background:var(--border);
+color:var(--text);
+box-shadow:0 2px 4px rgba(0,0,0,0.1);
+}
+
+button.secondary:hover{
+background:#cbd5e1;
+}
+
+button.danger{
+background:var(--error);
+box-shadow:0 2px 8px rgba(239,68,68,0.3);
+}
+
+button.danger:hover{
+background:#dc2626;
+}
+
+button.success{
+background:var(--success);
+box-shadow:0 2px 8px rgba(16,185,129,0.3);
+}
+
+button.small{
+padding:8px 12px;
+font-size:13px;
+}
+
+main{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+/* CARDS */
+.card{
+background:var(--card);
+padding:20px;
+border-radius:16px;
+margin-bottom:16px;
+box-shadow:var(--shadow);
+border:1px solid var(--border);
+animation:fadeInUp 0.4s ease;
+transition:all 0.3s ease;
+}
+
+@keyframes fadeInUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.card:hover{
+box-shadow:var(--shadow-lg);
+transform:translateY(-2px);
+}
+
+.card h3{
+font-size:20px;
+font-weight:700;
+margin-bottom:16px;
+color:var(--accent);
+}
+
+/* INPUTS */
+input,select,textarea{
+width:100%;
+padding:12px 16px;
+border-radius:12px;
+border:2px solid var(--border);
+margin-top:8px;
+margin-bottom:12px;
+font-size:15px;
+font-family:'Outfit',sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:all 0.3s ease;
+}
+
+input:focus,select:focus,textarea:focus{
+outline:none;
+border-color:var(--accent);
+box-shadow:0 0 0 3px rgba(255,15,63,0.1);
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus{
+box-shadow:0 0 0 3px rgba(101,21,149,0.2);
+}
+
+textarea{
+min-height:100px;
+resize:vertical;
+}
+
+/* WORD */
+.word{
+font-size:24px;
+font-weight:700;
+margin-bottom:10px;
+color:var(--accent);
+}
+
+.word-item{
+position:relative;
+}
+
+.word-item .edit-icon{
+position:absolute;
+top:20px;
+right:20px;
+cursor:pointer;
+font-size:20px;
+opacity:0;
+transition:opacity 0.3s ease;
+}
+
+.word-item:hover .edit-icon{
+opacity:1;
+}
+
+/* TAGS */
+.tag{
+display:inline-block;
+font-size:12px;
+font-weight:600;
+padding:6px 12px;
+border-radius:20px;
+background:linear-gradient(135deg,#e2e8f0,#cbd5e1);
+color: #0f172a;
+margin:4px;
+transition:all 0.3s ease;
+}
+
+.tag:hover{
+transform:translateY(-2px);
+box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* NAV */
+nav{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:16px;
+}
+
+nav button{
+flex:1;
+min-width:120px;
+}
+
+/* ACTION BAR */
+.action-bar{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:20px;
+}
+
+.action-bar button{
+flex:1;
+min-width:140px;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+font-size:13px;
+opacity:0.7;
+margin:20px 10px;
+font-weight:600;
+}
+
+/* UTIL */
+.hidden{
+display:none !important;
+}
+
+.text-center{
+text-align:center;
+}
+
+.mt-2{margin-top:16px}
+.mb-2{margin-bottom:16px}
+
+/* SEARCH BAR */
+.search-container{
+position:relative;
+margin-bottom:16px;
+}
+
+.search-container input{
+padding-left:44px;
+margin:0;
+}
+
+.search-icon{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+font-size:18px;
+opacity:0.5;
+}
+
+/* FILTER CHIPS */
+.filter-chips{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:16px;
+}
+
+.chip{
+padding:8px 16px;
+border-radius:20px;
+border:2px solid var(--border);
+background:var(--card);
+cursor:pointer;
+font-size:13px;
+font-weight:600;
+transition:all 0.3s ease;
+}
+
+.chip:hover{
+border-color:var(--accent);
+}
+
+.chip.active{
+background:var(--accent);
+color:white;
+border-color:var(--accent);
+}
+
+/* FLASHCARD */
+.flashcard-container{
+perspective:1000px;
+margin:20px 0;
+min-height:300px;
+}
+
+.flashcard{
+width:100%;
+min-height:300px;
+position:relative;
+transform-style:preserve-3d;
+transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);
+cursor:pointer;
+}
+
+.flashcard.flipped{
+transform:rotateY(180deg);
+}
+
+.flashcard-front,.flashcard-back{
+position:absolute;
+width:100%;
+min-height:300px;
+backface-visibility:hidden;
+border-radius:20px;
+padding:40px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+box-shadow:var(--shadow-lg);
+}
+
+.flashcard-front{
+background:linear-gradient(135deg,var(--accent),#ff4d7d);
+color:white;
+}
+
+[data-theme="dark"] .flashcard-front{
+background:linear-gradient(135deg,var(--accent),#8b1fb8);
+}
+
+.flashcard-back{
+background:var(--card);
+transform:rotateY(180deg);
+border:3px solid var(--accent);
+}
+
+.flashcard-word{
+font-size:36px;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.flashcard-meaning{
+font-size:20px;
+font-weight:600;
+margin-bottom:12px;
+}
+
+.flashcard-example{
+font-size:16px;
+font-style:italic;
+opacity:0.9;
+}
+
+.flash-progress{
+text-align:center;
+font-size:14px;
+font-weight:600;
+margin-bottom:16px;
+opacity:0.7;
+}
+
+/* QUIZ */
+.quiz-question{
+font-size:20px;
+font-weight:600;
+margin-bottom:20px;
+padding:20px;
+background:var(--bg);
+border-radius:12px;
+border-left:4px solid var(--accent);
+}
+
+.quiz-feedback{
+padding:16px;
+border-radius:12px;
+margin:16px 0;
+font-weight:600;
+animation:slideIn 0.3s ease;
+}
+
+@keyframes slideIn{
+from{opacity:0;transform:translateX(-20px)}
+to{opacity:1;transform:translateX(0)}
+}
+
+.quiz-feedback.correct{
+background:#d1fae5;
+color:#065f46;
+border-left:4px solid var(--success);
+}
+
+.quiz-feedback.incorrect{
+background:#fee2e2;
+color:#991b1b;
+border-left:4px solid var(--error);
+}
+
+.quiz-score{
+text-align:center;
+font-size:18px;
+font-weight:700;
+margin-bottom:16px;
+}
+
+/* STATS */
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:16px;
+margin-top:16px;
+}
+
+.stat-card{
+padding:20px;
+border-radius:12px;
+background:linear-gradient(135deg,var(--accent),#ff4d7d);
+color:white;
+text-align:center;
+box-shadow:var(--shadow);
+animation:fadeInUp 0.5s ease;
+}
+
+[data-theme="dark"] .stat-card{
+background:linear-gradient(135deg,var(--accent),#8b1fb8);
+}
+
+.stat-card:nth-child(2){
+animation-delay:0.1s;
+background:linear-gradient(135deg,#10b981,#059669);
+}
+
+.stat-card:nth-child(3){
+animation-delay:0.2s;
+background:linear-gradient(135deg,#f59e0b,#d97706);
+}
+
+.stat-card:nth-child(4){
+animation-delay:0.3s;
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+}
+
+.stat-value{
+font-size:36px;
+font-weight:800;
+display:block;
+margin-bottom:8px;
+}
+
+.stat-label{
+font-size:14px;
+font-weight:600;
+opacity:0.9;
+}
+
+/* TOAST NOTIFICATIONS */
+.toast-container{
+position:fixed;
+top:80px;
+right:20px;
+z-index:1000;
+}
+
+.toast{
+background:var(--card);
+padding:16px 20px;
+border-radius:12px;
+box-shadow:var(--shadow-lg);
+margin-bottom:10px;
+border-left:4px solid var(--accent);
+animation:slideInRight 0.3s ease;
+min-width:280px;
+max-width:400px;
+}
+
+@keyframes slideInRight{
+from{opacity:0;transform:translateX(100px)}
+to{opacity:1;transform:translateX(0)}
+}
+
+.toast.success{
+border-left-color:var(--success);
+}
+
+.toast.error{
+border-left-color:var(--error);
+}
+
+.toast.warning{
+border-left-color:var(--warning);
+}
+
+.toast-title{
+font-weight:700;
+margin-bottom:4px;
+}
+
+.toast-message{
+font-size:14px;
+opacity:0.9;
+}
+
+/* FLOATING NOTES */
+.floating-notes-btn{
+position:fixed;
+bottom:24px;
+right:24px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:var(--accent);
+color:white;
+border:none;
+font-size:28px;
+box-shadow:0 4px 20px rgba(255,15,63,0.4);
+cursor:pointer;
+z-index:999;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:all 0.3s ease;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.05)}
+}
+
+.floating-notes-btn:hover{
+transform:scale(1.1);
+box-shadow:0 6px 24px rgba(255,15,63,0.6);
+}
+
+.floating-notes-panel{
+position:fixed;
+bottom:100px;
+right:24px;
+width:340px;
+max-height:500px;
+background:var(--card);
+border-radius:16px;
+box-shadow:var(--shadow-lg);
+border:2px solid var(--accent);
+z-index:998;
+display:none;
+animation:slideUp 0.3s ease;
+overflow:hidden;
+}
+
+@keyframes slideUp{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.floating-notes-panel.active{
+display:flex;
+flex-direction:column;
+}
+
+.notes-header{
+padding:16px;
+background:var(--accent);
+color:white;
+font-weight:700;
+font-size:16px;
+}
+
+.notes-body{
+padding:16px;
+flex:1;
+overflow-y:auto;
+}
+
+.notes-body textarea{
+width:100%;
+min-height:200px;
+border:none;
+background:var(--bg);
+margin:0;
+}
+
+.note-item{
+padding:12px;
+background:var(--bg);
+border-radius:8px;
+margin-bottom:8px;
+font-size:14px;
+position:relative;
+}
+
+.note-item .delete-note{
+position:absolute;
+top:8px;
+right:8px;
+cursor:pointer;
+opacity:0.5;
+transition:opacity 0.3s;
+}
+
+.note-item .delete-note:hover{
+opacity:1;
+color:var(--error);
+}
+
+/* MODAL */
+.modal{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:1001;
+animation:fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+.modal.active{
+display:flex;
+}
+
+.modal-content{
+background:var(--card);
+padding:30px;
+border-radius:20px;
+max-width:500px;
+width:90%;
+max-height:90vh;
+overflow-y:auto;
+box-shadow:var(--shadow-lg);
+animation:scaleIn 0.3s ease;
+}
+
+@keyframes scaleIn{
+from{opacity:0;transform:scale(0.9)}
+to{opacity:1;transform:scale(1)}
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.modal-header h3{
+margin:0;
+}
+
+.modal-close{
+cursor:pointer;
+font-size:28px;
+font-weight:700;
+opacity:0.6;
+transition:opacity 0.3s;
+}
+
+.modal-close:hover{
+opacity:1;
+}
+
+/* ABOUT US */
+.social-links{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:12px;
+margin-top:20px;
+}
+
+.social-link{
+display:flex;
+align-items:center;
+gap:10px;
+padding:14px 18px;
+border-radius:12px;
+background:var(--bg);
+border:2px solid var(--border);
+text-decoration:none;
+color:var(--text);
+font-weight:600;
+transition:all 0.3s ease;
+}
+
+.social-link:hover{
+border-color:var(--accent);
+transform:translateY(-2px);
+box-shadow:var(--shadow);
+}
+
+.social-icon{
+font-size:24px;
+}
+
+/* ACHIEVEMENTS */
+.achievement-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:12px;
+margin-top:16px;
+}
+
+.achievement{
+padding:16px;
+border-radius:12px;
+background:var(--bg);
+border:2px solid var(--border);
+text-align:center;
+transition:all 0.3s ease;
+}
+
+.achievement.unlocked{
+border-color:var(--accent);
+background:linear-gradient(135deg,rgba(255,15,63,0.1),rgba(255,77,125,0.1));
+}
+
+.achievement-icon{
+font-size:32px;
+margin-bottom:8px;
+filter:grayscale(100%);
+}
+
+.achievement.unlocked .achievement-icon{
+filter:grayscale(0%);
+}
+
+.achievement-name{
+font-size:12px;
+font-weight:600;
+}
+
+/* EMPTY STATE */
+.empty-state{
+text-align:center;
+padding:60px 20px;
+opacity:0.6;
+}
+
+.empty-state-icon{
+font-size:64px;
+margin-bottom:16px;
+}
+
+.empty-state-text{
+font-size:18px;
+font-weight:600;
+}
+
+/* LOADING */
+.loading{
+display:inline-block;
+width:20px;
+height:20px;
+border:3px solid rgba(255,255,255,0.3);
+border-radius:50%;
+border-top-color:white;
+animation:spin 0.8s linear infinite;
+}
+
+@keyframes spin{
+to{transform:rotate(360deg)}
+}
+
+/* WATERMARK */
+body::after{
+content:"Feedback IELTS\Awith Tanvir Antor";
+white-space:pre;
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+font-size:40px;
+font-weight:900;
+letter-spacing:2px;
+color:#ff000d;
+opacity:0.06;
+pointer-events:none;
+z-index:0;
+font-family:'Outfit',sans-serif;
+}
+
+/* EXPORT BUTTONS */
+.export-buttons{
+display:flex;
+gap:10px;
+margin-top:16px;
+flex-wrap:wrap;
+}
+
+.export-buttons button{
+flex:1;
+min-width:120px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+header h2{font-size:18px}
+.flashcard-word{font-size:28px}
+.flashcard-meaning{font-size:18px}
+.stat-value{font-size:28px}
+.floating-notes-panel{width:90%;right:5%}
+}
+
+/* SCROLL ANIMATIONS */
+.scroll-fade{
+opacity:0;
+transform:translateY(30px);
+transition:all 0.6s ease;
+}
+
+.scroll-fade.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* STREAKS */
+.streak-indicator{
+display:inline-flex;
+align-items:center;
+gap:6px;
+padding:8px 16px;
+background:linear-gradient(135deg,#f59e0b,#d97706);
+color:white;
+border-radius:20px;
+font-weight:700;
+font-size:14px;
+box-shadow:0 2px 8px rgba(245,158,11,0.3);
+}
+
+/* PROGRESS BAR */
+.progress-bar{
+width:100%;
+height:8px;
+background:var(--border);
+border-radius:10px;
+overflow:hidden;
+margin:10px 0;
+}
+
+.progress-fill{
+height:100%;
+background:linear-gradient(90deg,var(--accent),#ff4d7d);
+border-radius:10px;
+transition:width 0.5s ease;
+}
+
+/* WORD ACTIONS */
+.word-actions{
+display:flex;
+gap:8px;
+margin-top:12px;
+flex-wrap:wrap;
+}
+
+.word-actions button{
+flex:1;
+min-width:80px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div>
+<h2><strong>VocaBoost •</strong>• Feedback IELTS</h2>
+</div>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+<div id="pointsDisplay" style="background:linear-gradient(135deg,#10b981,#059669);color:white;padding:8px 16px;border-radius:20px;font-weight:700;font-size:14px;box-shadow:0 2px 8px rgba(16,185,129,0.3)">
+0 pts | Level 1
+</div>
+<div id="streakBadge" class="streak-indicator hidden">
+🔥 <span id="streakDays">0</span>
+</div>
+<button onclick="toggleTheme()" class="small">☯ Mode</button>
+</div>
+</header>
+
+<main>
+
+<!-- NAVIGATION -->
+<nav>
+<button onclick="switchView('list')">📚 Word List</button>
+<button onclick="switchView('mistakes')">❌ Mistakes</button>
+<button onclick="switchView('stats')">📊 Progress</button>
+<button onclick="switchView('about')">ℹ️ About</button>
+</nav>
+
+<!-- ACTION BUTTONS -->
+<div class="action-bar">
+<button onclick="switchView('add')">✦ Add Word</button>
+<button onclick="switchView('flash')">🎴 Flashcards</button>
+<button onclick="switchView('quiz')">🧠 Quiz</button>
+<button onclick="switchView('achievements')">🏆 Achievements</button>
+</div>
+
+<!-- ADD WORD -->
+<section id="add" class="card hidden">
+<h3>Add Vocabulary</h3>
+<input id="w" placeholder="Word / Phrase">
+<textarea id="m" placeholder="Meaning"></textarea>
+<textarea id="e" placeholder="Example sentence"></textarea>
+
+<select id="g">
+<option>Noun</option><option>Verb</option><option>Adjective</option>
+<option>Adverb</option><option>Determiner/Quantifier</option>
+<option>Polysemous word</option>
+<option>Adverbial Phrase</option><option>Phrase / Collocation</option>
+</select>
+
+<select id="t">
+<option>Education</option><option>Science/Technology/Innovation</option>
+<option>Environment</option><option>Wildlife</option>
+<option>Agriculture</option><option>Communication</option>
+<option>Globalisation/International Affairs</option><option>Urbanisation/Accommodation</option>
+<option>Health/Medical Sciences</option><option>Society/Cultures</option>
+<option>Business/Economy</option><option>Art/Creativity</option>
+<option>Space science</option><option>History/Geography</option><option>Other/Find later</option>
+</select>
+
+<select id="s">
+<option>Speaking</option><option>Writing Task 2</option><option>Writing Task 1</option><option>Writing (Collective)</option>
+<option>Listening</option><option>Reading</option>
+</select>
+
+<select id="d">
+<option>Easy</option><option>Medium</option><option>Advanced</option>
+<option>Band 6</option><option>Band 7</option><option>Band 8+</option>
+</select>
+
+<div style="display:flex;gap:10px;margin-top:16px">
+<button onclick="addWord()" style="flex:1">💾 Save Word</button>
+<button onclick="clearForm()" class="secondary" style="flex:1">🔄 Clear</button>
+</div>
+</section>
+
+<!-- WORD LIST -->
+<section id="list">
+<!-- Search Bar -->
+<div class="search-container">
+<span class="search-icon">🔍</span>
+<input type="text" id="searchInput" placeholder="Search words..." onkeyup="filterWords()">
+</div>
+
+<!-- Filter Chips -->
+<div class="filter-chips" id="filterChips">
+<div class="chip active" onclick="filterByType('all')">All</div>
+<div class="chip" onclick="filterByType('favorites')">⭐ Favorites</div>
+<div class="chip" onclick="filterByType('recent')">🕐 Recent</div>
+</div>
+
+<!-- Sort Options -->
+<div style="margin-bottom:16px;display:flex;gap:10px;flex-wrap:wrap">
+<select id="sortBy" onchange="sortWords()" style="flex:1;margin:0">
+<option value="date">Sort by: Date Added</option>
+<option value="alpha">Sort by: A-Z</option>
+<option value="difficulty">Sort by: Difficulty</option>
+</select>
+</div>
+
+<!-- Export Buttons -->
+<div class="export-buttons">
+<button onclick="exportJSON()" class="secondary small">📥 Export JSON</button>
+<button onclick="exportCSV()" class="secondary small">📊 Export CSV</button>
+<button onclick="importData()" class="secondary small">📤 Import</button>
+<button onclick="clearAllData()" class="danger small">🗑️ Clear All</button>
+</div>
+
+<div id="wordList"></div>
+</section>
+
+<!-- FLASHCARDS -->
+<section id="flash" class="card hidden">
+<h3>🎴 Flashcards</h3>
+<div class="flash-progress" id="flashProgress"></div>
+<div class="flashcard-container">
+<div class="flashcard" id="flashcard" onclick="flipCard()">
+<div class="flashcard-front">
+<div class="flashcard-word" id="flashWord"></div>
+<p style="margin-top:20px;opacity:0.9">Click to reveal meaning</p>
+</div>
+<div class="flashcard-back">
+<div class="flashcard-meaning" id="flashMeaning"></div>
+<div class="flashcard-example" id="flashExample"></div>
+<div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap" id="flashTags"></div>
+</div>
+</div>
+</div>
+<div style="display:flex;gap:10px;margin-top:20px">
+<button onclick="prevFlash()" style="flex:1">⬅️ Previous</button>
+<button onclick="randomFlash()" class="secondary" style="flex:1">🎲 Random</button>
+<button onclick="nextFlash()" style="flex:1">Next ➡️</button>
+</div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz" class="card hidden">
+<h3>🧠 Quiz Mode</h3>
+<div class="quiz-score" id="quizScore"></div>
+
+<div style="margin-bottom:20px">
+<select id="quizMode" onchange="resetQuiz()" style="margin:0">
+<option value="meaning">Meaning → Word</option>
+<option value="fill">Fill in the Blank</option>
+</select>
+</div>
+
+<div id="quizbox"></div>
+<div id="quizFeedback"></div>
+
+<div style="display:flex;gap:10px;margin-top:20px">
+<button onclick="checkQuiz()" class="success" style="flex:1">✓ Check Answer</button>
+<button onclick="skipQuiz()" class="secondary" style="flex:1">⏭️ Skip</button>
+<button onclick="resetQuiz()" class="danger" style="flex:1">🔄 Reset</button>
+</div>
+</section>
+
+<!-- MISTAKES -->
+<section id="mistakes" class="card hidden">
+<h3>❌ Common Mistakes</h3>
+<div style="margin-bottom:16px;display:flex;gap:10px">
+<button onclick="reviewMistakes()" class="secondary" style="flex:1">📖 Review All</button>
+<button onclick="clearMistakes()" class="danger" style="flex:1">🗑️ Clear Mistakes</button>
+</div>
+<div id="mistakesList"></div>
+</section>
+
+<!-- STATS -->
+<section id="stats" class="card hidden">
+<h3>📊 Your Progress</h3>
+<div class="stats-grid" id="statsGrid"></div>
+
+<div class="card mt-2">
+<h3>📈 Learning Analytics</h3>
+<div id="analyticsChart"></div>
+</div>
+
+<div class="card mt-2">
+<h3>📅 Activity Calendar</h3>
+<p style="opacity:0.7">Total study days: <strong id="totalStudyDays">0</strong></p>
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill" style="width:0%"></div>
+</div>
+</div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="card hidden">
+<h3>🏆 Achievements</h3>
+<div class="achievement-grid" id="achievementGrid"></div>
+</section>
+
+<!-- ABOUT US -->
+<section id="about" class="card hidden">
+<h3>ℹ️ About VocaBoost</h3>
+<p style="margin-bottom:20px;line-height:1.8">
+<strong>VocaBoost Lite - Version2.2</strong> is your ultimate IELTS vocabulary companion, designed to help you easily collect vocabularies from anywhere and master those words efficiently through daily practice, interactive revision flashcards, smart quizzes, and progress tracking.
+</p>
+
+<div class="card" style="background:var(--bg);margin-bottom:20px">
+<h4 style="margin-bottom:12px">✨ Features</h4>
+<ul style="line-height:2;padding-left:20px">
+<li>📚 Comprehensive word management</li>
+<li>🎴 Interactive flashcards with flip animations</li>
+<li>🧠 Multiple quiz modes</li>
+<li>📊 Detailed progress tracking</li>
+<li>🏆 Achievement system</li>
+<li>🔔 Daily vocabulary notifications</li>
+<li>📝 Quick notes feature</li>
+<li>🌓 Dark mode support</li>
+</ul>
+</div>
+
+<h4 style="margin:20px 0 12px">📱 Connect With Us</h4>
+<div class="social-links">
+<a href="https://youtube.com/@feedbackielts" target="_blank" class="social-link">
+<span class="social-icon">📺</span> YouTube
+</a>
+<a href="https://facebook.com/feedbackielts" target="_blank" class="social-link">
+<span class="social-icon">👤</span> Facebook
+</a>
+<a href="https://tiktok.com/@feedbackielts" target="_blank" class="social-link">
+<span class="social-icon">🎵</span> TikTok
+</a>
+<a href="https://instagram.com/feedbackielts" target="_blank" class="social-link">
+<span class="social-icon">📷</span> Instagram
+</a>
+<a href="https://t.me/feedbackielts" target="_blank" class="social-link">
+<span class="social-icon">✈️</span> Telegram
+</a>
+<a href="https://linkedin.com/in/tanvirantor" target="_blank" class="social-link">
+<span class="social-icon">💼</span> LinkedIn
+</a>
+</div>
+
+<div class="card mt-2" style="background:var(--bg);text-align:center">
+<p style="font-weight:600;margin-bottom:8px">Developed by</p>
+<p style="font-size:20px;font-weight:800;color:var(--accent)">Tanvir Antor</p>
+<p style="opacity:0.7;margin-top:8px">Feedback IELTS © 2026</p>
+</div>
+</section>
+
+</main>
+
+<!-- FLOATING NOTES BUTTON -->
+<button class="floating-notes-btn" onclick="toggleNotes()" title="Quick Notes">
+📝
+</button>
+
+<!-- FLOATING NOTES PANEL -->
+<div class="floating-notes-panel" id="notesPanel">
+<div class="notes-header">
+📝 Quick Notes
+</div>
+<div class="notes-body">
+<textarea id="noteInput" placeholder="Type your quick notes here..."></textarea>
+<button onclick="saveNote()" style="width:100%;margin-top:12px">💾 Save Note</button>
+<div id="notesList" style="margin-top:20px"></div>
+</div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- EDIT MODAL -->
+<div class="modal" id="editModal">
+<div class="modal-content">
+<div class="modal-header">
+<h3>✏️ Edit Word</h3>
+<span class="modal-close" onclick="closeEditModal()">×</span>
+</div>
+<input id="editW" placeholder="Word / Phrase">
+<textarea id="editM" placeholder="Meaning"></textarea>
+<textarea id="editE" placeholder="Example sentence"></textarea>
+<select id="editG">
+<option>Noun</option><option>Verb</option><option>Adjective</option>
+<option>Adverb</option><option>Determiner/Quantifier</option>
+<option>Polysemous word</option>
+<option>Adverbial Phrase</option><option>Phrase / Collocation</option>
+</select>
+<select id="editT">
+<option>Education</option><option>Science/Technology/Innovation</option>
+<option>Environment</option><option>Wildlife</option>
+<option>Agriculture</option><option>Communication</option>
+<option>Globalisation/International Affairs</option><option>Urbanisation/Accommodation</option>
+<option>Health/Medical Sciences</option><option>Society/Cultures</option>
+<option>Business/Economy</option><option>Art/Creativity</option>
+<option>Space science</option><option>History/Geography</option><option>Other/Find later</option>
+</select>
+<select id="editS">
+<option>Speaking</option><option>Writing Task 2</option><option>Writing Task 1</option><option>Writing (Collective)</option>
+<option>Listening</option><option>Reading</option>
+</select>
+<select id="editD">
+<option>Easy</option><option>Medium</option><option>Advanced</option>
+<option>Band 6</option><option>Band 7</option><option>Band 8+</option>
+</select>
+<div style="display:flex;gap:10px;margin-top:20px">
+<button onclick="saveEdit()" style="flex:1">💾 Save Changes</button>
+<button onclick="closeEditModal()" class="secondary" style="flex:1">✖ Cancel</button>
+</div>
+</div>
+</div>
+
+<!-- IMPORT INPUT -->
+<input type="file" id="importFile" accept=".json,.csv" style="display:none" onchange="handleImport(event)">
+
+<footer><strong>Learn • Skill-up • Grow</strong></footer>
+<footer>© 2026 • Tanvir Antor</footer>
+
+<script>
+// DATA
+let vocab=JSON.parse(localStorage.getItem("vocab")||"[]");
+let mistakes=JSON.parse(localStorage.getItem("mistakes")||"[]");
+let notes=JSON.parse(localStorage.getItem("notes")||"[]");
+let stats=JSON.parse(localStorage.getItem("stats")||"{\"correct\":0,\"incorrect\":0,\"streak\":0,\"lastStudy\":\"\",\"points\":0,\"level\":1,\"coins\":0,\"highestStreak\":0}");
+let achievements=JSON.parse(localStorage.getItem("achievements")||"[]");
+
+// Ensure stats has all required fields (for backwards compatibility)
+if(!stats.points)stats.points=0;
+if(!stats.level)stats.level=1;
+if(!stats.coins)stats.coins=0;
+if(!stats.highestStreak)stats.highestStreak=0;
+
+// INDICES
+let flashIndex=0;
+let quizIndex=0;
+let currentEditIndex=-1;
+let quizCorrect=0;
+let quizTotal=0;
+let currentFilter='all';
+let currentSort='date';
+let isCardFlipped=false;
+let consecutiveCorrect=0;
+let quizStartTime=Date.now();
+
+// SAVE TO LOCALSTORAGE
+function save(){
+localStorage.setItem("vocab",JSON.stringify(vocab));
+localStorage.setItem("mistakes",JSON.stringify(mistakes));
+localStorage.setItem("notes",JSON.stringify(notes));
+localStorage.setItem("stats",JSON.stringify(stats));
+localStorage.setItem("achievements",JSON.stringify(achievements));
+}
+
+// SWITCH VIEW
+function switchView(id){
+document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+document.getElementById(id)?.classList.remove("hidden");
+render();
+if(id==='flash'){resetFlashcard()}
+if(id==='quiz'){resetQuiz()}
+}
+
+// ADD WORD
+function addWord(){
+if(!w.value){
+showToast("Error","Please enter a word","error");
+return;
+}
+vocab.unshift({
+w:w.value,
+m:m.value,
+e:e.value,
+g:g.value,
+t:t.value,
+s:s.value,
+d:d.value,
+f:false,
+date:Date.now()
+});
+save();
+updateStreak();
+checkAchievements();
+showToast("Success","Word added successfully!","success");
+switchView("list");
+clearForm();
+}
+
+// CLEAR FORM
+function clearForm(){
+w.value=m.value=e.value="";
+g.selectedIndex=0;
+t.selectedIndex=0;
+s.selectedIndex=0;
+d.selectedIndex=0;
+}
+
+// DELETE WORD
+function del(i){
+if(confirm("Delete this word?")){
+vocab.splice(i,1);
+save();
+render();
+showToast("Deleted","Word removed","warning");
+}
+}
+
+// TOGGLE FAVORITE
+function fav(i){
+vocab[i].f=!vocab[i].f;
+save();
+render();
+}
+
+// EDIT WORD
+let editingIndex=-1;
+function editWord(i){
+editingIndex=i;
+const word=vocab[i];
+editW.value=word.w;
+editM.value=word.m;
+editE.value=word.e;
+editG.value=word.g;
+editT.value=word.t;
+editS.value=word.s;
+editD.value=word.d;
+document.getElementById('editModal').classList.add('active');
+}
+
+function saveEdit(){
+if(!editW.value){
+showToast("Error","Word cannot be empty","error");
+return;
+}
+vocab[editingIndex]={
+...vocab[editingIndex],
+w:editW.value,
+m:editM.value,
+e:editE.value,
+g:editG.value,
+t:editT.value,
+s:editS.value,
+d:editD.value
+};
+save();
+render();
+closeEditModal();
+showToast("Success","Word updated!","success");
+}
+
+function closeEditModal(){
+document.getElementById('editModal').classList.remove('active');
+editingIndex=-1;
+}
+
+// RENDER WORD LIST
+function render(){
+let filtered=vocab.slice();
+
+// Apply filters
+if(currentFilter==='favorites'){
+filtered=filtered.filter(x=>x.f);
+}else if(currentFilter==='recent'){
+filtered=filtered.slice(0,20);
+}
+
+// Apply search
+const search=document.getElementById('searchInput')?.value.toLowerCase()||'';
+if(search){
+filtered=filtered.filter(x=>
+x.w.toLowerCase().includes(search)||
+x.m.toLowerCase().includes(search)||
+x.e.toLowerCase().includes(search)
+);
+}
+
+// Apply sort
+if(currentSort==='alpha'){
+filtered.sort((a,b)=>a.w.localeCompare(b.w));
+}else if(currentSort==='difficulty'){
+const diffOrder={'Easy':1,'Medium':2,'Advanced':3,'Band 6':4,'Band 7':5,'Band 8+':6};
+filtered.sort((a,b)=>(diffOrder[a.d]||0)-(diffOrder[b.d]||0));
+}
+
+// Render
+const list=document.getElementById('wordList');
+if(!list)return;
+
+if(filtered.length===0){
+list.innerHTML=`
+<div class="empty-state">
+<div class="empty-state-icon">📭</div>
+<div class="empty-state-text">No words found</div>
+</div>`;
+return;
+}
+
+list.innerHTML=filtered.map((x,i)=>{
+const originalIndex=vocab.indexOf(x);
+return `
+<div class="card word-item">
+<span class="edit-icon" onclick="editWord(${originalIndex})" title="Edit word">✏️</span>
+<div class="word">${x.w}</div>
+<p style="margin-bottom:8px"><strong>Meaning:</strong> ${x.m||'—'}</p>
+<p style="margin-bottom:12px;font-style:italic;opacity:0.8">${x.e||'—'}</p>
+<div style="margin-bottom:12px">
+<span class="tag">${x.g}</span>
+<span class="tag">${x.t}</span>
+<span class="tag">${x.s}</span>
+<span class="tag">${x.d}</span>
+</div>
+<div class="word-actions">
+<button onclick="fav(${originalIndex})" class="small secondary">${x.f?"⭐ Favorited":"☆ Favorite"}</button>
+<button onclick="speakWord('${x.w}')" class="small secondary">🔊 Pronounce</button>
+<button onclick="del(${originalIndex})" class="small danger">🗑️ Delete</button>
+</div>
+</div>`;
+}).join('');
+
+renderFlash();
+renderQuiz();
+renderMistakes();
+renderStats();
+renderAchievements();
+}
+
+// FILTER WORDS
+function filterByType(type){
+currentFilter=type;
+document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+event.target.classList.add('active');
+render();
+}
+
+function filterWords(){
+render();
+}
+
+function sortWords(){
+currentSort=document.getElementById('sortBy').value;
+render();
+}
+
+// FLASHCARDS
+function resetFlashcard(){
+flashIndex=0;
+isCardFlipped=false;
+renderFlash();
+}
+
+function renderFlash(){
+if(!vocab.length){
+document.getElementById('flashcard').innerHTML=`
+<div class="empty-state">
+<div class="empty-state-icon">📭</div>
+<div class="empty-state-text">No words to study</div>
+</div>`;
+return;
+}
+
+const card=vocab[flashIndex];
+document.getElementById('flashWord').textContent=card.w;
+document.getElementById('flashMeaning').textContent=card.m||'—';
+document.getElementById('flashExample').textContent=card.e||'—';
+document.getElementById('flashTags').innerHTML=`
+<span class="tag">${card.g}</span>
+<span class="tag">${card.t}</span>
+<span class="tag">${card.s}</span>
+<span class="tag">${card.d}</span>
+`;
+document.getElementById('flashProgress').textContent=`Card ${flashIndex+1} of ${vocab.length}`;
+
+// Reset flip
+document.getElementById('flashcard').classList.remove('flipped');
+isCardFlipped=false;
+}
+
+function flipCard(){
+const card=document.getElementById('flashcard');
+if(isCardFlipped){
+card.classList.remove('flipped');
+}else{
+card.classList.add('flipped');
+}
+isCardFlipped=!isCardFlipped;
+}
+
+function nextFlash(){
+flashIndex=(flashIndex+1)%vocab.length;
+renderFlash();
+}
+
+function prevFlash(){
+flashIndex=(flashIndex-1+vocab.length)%vocab.length;
+renderFlash();
+}
+
+function randomFlash(){
+flashIndex=Math.floor(Math.random()*vocab.length);
+renderFlash();
+}
+
+// QUIZ
+function resetQuiz(){
+quizIndex=0;
+quizCorrect=0;
+quizTotal=0;
+consecutiveCorrect=0;
+quizStartTime=Date.now();
+document.getElementById('quizFeedback').innerHTML='';
+renderQuiz();
+updatePointsDisplay();
+}
+
+function renderQuiz(){
+if(!vocab.length){
+document.getElementById('quizbox').innerHTML=`
+<div class="empty-state">
+<div class="empty-state-icon">📭</div>
+<div class="empty-state-text">No words to quiz</div>
+</div>`;
+return;
+}
+
+const q=vocab[quizIndex];
+const mode=document.getElementById('quizMode').value;
+document.getElementById('quizScore').textContent=`Score: ${quizCorrect}/${quizTotal} | ${stats.points} pts`;
+
+// Reset timer for this question
+quizStartTime=Date.now();
+
+if(mode==='meaning'){
+document.getElementById('quizbox').innerHTML=`
+<div class="quiz-question">
+<strong>What word matches this meaning?</strong><br><br>
+${q.m}
+</div>
+<input id="ans" placeholder="Type your answer..." style="margin:0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+`;
+}else{
+// Fill in the blank - improved handling
+let sentence=q.e||`This is an example sentence with ${q.w}.`;
+let blankSentence='';
+let wordFound=false;
+
+// Try to find and replace the word (case-insensitive, but only first occurrence)
+const lowerSentence=sentence.toLowerCase();
+const lowerWord=q.w.toLowerCase();
+const wordIndex=lowerSentence.indexOf(lowerWord);
+
+if(wordIndex!==-1){
+// Found the word in the sentence
+blankSentence=sentence.substring(0,wordIndex)+
+'_______'+
+sentence.substring(wordIndex+q.w.length);
+wordFound=true;
+}else{
+// Word not found in example, create a simple sentence
+blankSentence=`The word _______ is important to learn.`;
+}
+
+document.getElementById('quizbox').innerHTML=`
+<div class="quiz-question">
+<strong>Fill in the blank:</strong><br><br>
+${blankSentence}
+${!wordFound?`<div style="margin-top:12px;padding:10px;background:var(--bg);border-radius:8px;font-size:13px;opacity:0.8">
+💡 Hint: The blank represents the vocabulary word you're learning.
+</div>`:''}
+</div>
+<input id="ans" placeholder="Type your answer..." style="margin:0" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+`;
+}
+
+const ansInput=document.getElementById('ans');
+if(ansInput){
+ansInput.focus();
+}
+}
+
+// ADVANCED ANSWER VALIDATION
+let isCheckingAnswer=false; // Prevent double submission
+
+function normalizeAnswer(text){
+// Comprehensive normalization for answer comparison
+return text
+.toLowerCase()
+.trim()
+// Remove multiple spaces
+.replace(/\s+/g,' ')
+// Remove common punctuation that doesn't affect meaning
+.replace(/[.,!?;:'"()]/g,'')
+// Handle hyphenated words (e.g., "well-known" vs "well known")
+.replace(/-/g,' ')
+// Remove articles if they're accidentally included
+.replace(/^(a|an|the)\s+/i,'')
+.trim();
+}
+
+function calculateLevenshteinDistance(str1,str2){
+// Calculate edit distance between two strings (for typo tolerance)
+const matrix=[];
+for(let i=0;i<=str2.length;i++){
+matrix[i]=[i];
+}
+for(let j=0;j<=str1.length;j++){
+matrix[0][j]=j;
+}
+for(let i=1;i<=str2.length;i++){
+for(let j=1;j<=str1.length;j++){
+if(str2.charAt(i-1)===str1.charAt(j-1)){
+matrix[i][j]=matrix[i-1][j-1];
+}else{
+matrix[i][j]=Math.min(
+matrix[i-1][j-1]+1, // substitution
+matrix[i][j-1]+1,   // insertion
+matrix[i-1][j]+1    // deletion
+);
+}
+}
+}
+return matrix[str2.length][str1.length];
+}
+
+function isCloseEnough(userAnswer,correctAnswer){
+// Check if answer is close enough (typo tolerance)
+const normalized=normalizeAnswer(userAnswer);
+const correct=normalizeAnswer(correctAnswer);
+
+// Exact match
+if(normalized===correct)return {match:'exact',similarity:100};
+
+// Calculate similarity percentage
+const maxLen=Math.max(normalized.length,correct.length);
+const distance=calculateLevenshteinDistance(normalized,correct);
+const similarity=((maxLen-distance)/maxLen)*100;
+
+// Accept if 80%+ similar (allows 1-2 typos)
+if(similarity>=80)return {match:'close',similarity:Math.round(similarity)};
+
+// Check if answer contains the correct word (for phrases)
+if(normalized.includes(correct)||correct.includes(normalized)){
+return {match:'partial',similarity:Math.round(similarity)};
+}
+
+return {match:'none',similarity:Math.round(similarity)};
+}
+
+function getAlternativeAnswers(word){
+// Generate acceptable alternative answers
+const alternatives=[word.w];
+
+// Add version without hyphens
+if(word.w.includes('-')){
+alternatives.push(word.w.replace(/-/g,' '));
+alternatives.push(word.w.replace(/-/g,''));
+}
+
+// Add version without spaces for compound words
+if(word.w.includes(' ')){
+alternatives.push(word.w.replace(/\s+/g,''));
+}
+
+// Add British/American spelling variants
+const variants={
+'colour':'color','colour':'color',
+'favour':'favor','favour':'favor',
+'honour':'honor','honour':'honor',
+'labour':'labor','labour':'labor',
+'behaviour':'behavior','behaviour':'behavior',
+'centre':'center','centre':'center',
+'theatre':'theater','theatre':'theater',
+'defence':'defense','defence':'defense',
+'licence':'license','licence':'license',
+'practise':'practice','practise':'practice',
+'analyse':'analyze','analyse':'analyze',
+'organisation':'organization','organisation':'organization',
+'realise':'realize','realise':'realize',
+'recognise':'recognize','recognise':'recognize'
+};
+
+const lower=word.w.toLowerCase();
+for(const [brit,amer] of Object.entries(variants)){
+if(lower.includes(brit)){
+alternatives.push(word.w.toLowerCase().replace(brit,amer));
+}
+if(lower.includes(amer)){
+alternatives.push(word.w.toLowerCase().replace(amer,brit));
+}
+}
+
+return alternatives;
+}
+
+function calculatePoints(correctAnswer,difficulty,timeTaken,consecutiveStreak){
+// Base points by difficulty
+const basePoints={
+'Easy':10,
+'Medium':15,
+'Advanced':20,
+'Band 6':15,
+'Band 7':20,
+'Band 8+':25
+};
+
+let points=basePoints[difficulty]||10;
+
+// Speed bonus (answered within 5 seconds)
+if(timeTaken<5000){
+points+=5;
+}else if(timeTaken<10000){
+points+=3;
+}
+
+// Streak bonus
+if(consecutiveStreak>=3){
+points+=Math.min(consecutiveStreak*2,20); // Max +20 from streak
+}
+
+// First try bonus (if never gotten this word wrong before)
+// This would need tracking per word - simplified here
+
+return points;
+}
+
+function checkQuiz(){
+// Prevent double submission
+if(isCheckingAnswer)return;
+isCheckingAnswer=true;
+
+const q=vocab[quizIndex];
+const answerInput=document.getElementById('ans');
+const userAnswer=answerInput?.value||'';
+const timeTaken=Date.now()-quizStartTime;
+
+// Empty answer
+if(!userAnswer.trim()){
+document.getElementById('quizFeedback').innerHTML=`
+<div class="quiz-feedback incorrect">
+⚠️ Please enter an answer!
+</div>`;
+isCheckingAnswer=false;
+return;
+}
+
+quizTotal++;
+
+// Get all acceptable answers
+const acceptableAnswers=getAlternativeAnswers(q);
+let bestMatch={match:'none',similarity:0};
+
+// Check against all alternatives
+for(const correctAnswer of acceptableAnswers){
+const result=isCloseEnough(userAnswer,correctAnswer);
+if(result.similarity>bestMatch.similarity){
+bestMatch=result;
+}
+if(result.match==='exact')break; // Found exact match, stop checking
+}
+
+// Determine if answer is correct
+if(bestMatch.match==='exact'){
+// PERFECT ANSWER
+consecutiveCorrect++;
+const points=calculatePoints(q.w,q.d,timeTaken,consecutiveCorrect);
+stats.correct++;
+stats.points+=points;
+stats.coins+=Math.floor(points/10);
+
+// Track highest streak
+if(!stats.highestStreak||consecutiveCorrect>stats.highestStreak){
+stats.highestStreak=consecutiveCorrect;
+}
+
+// Check for level up
+const newLevel=Math.floor(stats.points/500)+1;
+if(newLevel>stats.level){
+stats.level=newLevel;
+showToast("Level Up!",`🎉 You've reached Level ${newLevel}!`,"success");
+}
+
+quizCorrect++;
+
+let bonusMessage='';
+if(timeTaken<5000)bonusMessage+=' ⚡ Speed Bonus!';
+if(consecutiveCorrect>=3)bonusMessage+=` 🔥 ${consecutiveCorrect}x Streak!`;
+
+document.getElementById('quizFeedback').innerHTML=`
+<div class="quiz-feedback correct">
+<div style="font-size:24px;margin-bottom:8px">✓ Perfect!</div>
+<div style="font-size:16px;margin-bottom:8px">The answer is <strong>"${q.w}"</strong></div>
+<div style="font-size:18px;font-weight:700;color:#10b981">+${points} points ${bonusMessage}</div>
+<div style="margin-top:12px;opacity:0.9;font-size:14px">
+<strong>Example:</strong> ${q.e||'No example available'}
+</div>
+<button onclick="dismissFeedback()" class="small secondary" style="margin-top:16px;width:100%">
+→ Next Question
+</button>
+</div>`;
+
+showToast("Correct!",`+${points} pts! 🎉${bonusMessage}`,"success");
+
+}else if(bestMatch.match==='close'){
+// CLOSE ANSWER (typo tolerance)
+consecutiveCorrect++;
+const points=Math.floor(calculatePoints(q.w,q.d,timeTaken,consecutiveCorrect)*0.8); // 80% points for typo
+stats.correct++;
+stats.points+=points;
+stats.coins+=Math.floor(points/10);
+
+// Track highest streak
+if(!stats.highestStreak||consecutiveCorrect>stats.highestStreak){
+stats.highestStreak=consecutiveCorrect;
+}
+
+quizCorrect++;
+
+// Color-code by similarity: 90%+ = yellow (very close), 80-89% = orange (close enough)
+const isVeryClose=bestMatch.similarity>=90;
+const bgColor=isVeryClose?'#fef3c7':'#fed7aa'; // yellow vs orange
+const borderColor=isVeryClose?'#f59e0b':'#ea580c'; // amber vs orange
+const textColor=isVeryClose?'#92400e':'#9a3412'; // dark amber vs dark orange
+
+document.getElementById('quizFeedback').innerHTML=`
+<div class="quiz-feedback correct" style="background:${bgColor};color:${textColor};border-left-color:${borderColor}">
+<div style="font-size:24px;margin-bottom:8px">${isVeryClose?'✓ Almost Perfect!':'✓ Close Enough!'}</div>
+<div style="font-size:14px;margin-bottom:8px">You wrote: "${userAnswer}"</div>
+<div style="font-size:14px;margin-bottom:8px">Correct spelling: <strong>"${q.w}"</strong></div>
+<div style="font-size:18px;font-weight:700;color:${borderColor}">+${points} points (${bestMatch.similarity}% match)</div>
+<div style="margin-top:12px;padding:12px;background:rgba(245,158,11,0.15);border-radius:8px">
+<strong>💡 Tip:</strong> ${isVeryClose?'Just a tiny typo! You almost had it perfect!':'Watch out for spelling! You got the meaning right though!'} 
+</div>
+<button onclick="dismissFeedback()" class="small secondary" style="margin-top:12px;width:100%">
+✓ Got It! Continue
+</button>
+</div>`;
+
+showToast(isVeryClose?"Very Close!":"Close Enough!",`+${points} pts! Minor typo.`,"success");
+
+}else if(bestMatch.match==='partial'){
+// PARTIAL MATCH (got part of it right)
+consecutiveCorrect=0;
+const partialPoints=5;
+stats.points+=partialPoints;
+stats.incorrect++;
+
+document.getElementById('quizFeedback').innerHTML=`
+<div class="quiz-feedback" style="background:#fef3c7;color:#92400e;border-left-color:#f59e0b">
+<div style="font-size:24px;margin-bottom:8px">△ Partially Correct</div>
+<div style="font-size:14px;margin-bottom:8px">You wrote: "${userAnswer}"</div>
+<div style="font-size:14px;margin-bottom:12px">Complete answer: <strong>"${q.w}"</strong></div>
+<div style="font-size:16px;font-weight:700;color:#d97706">+${partialPoints} points (partial credit)</div>
+<div style="margin-top:12px;padding:12px;background:rgba(245,158,11,0.1);border-radius:8px">
+<strong>Meaning:</strong> ${q.m}<br>
+<strong>Example:</strong> ${q.e||'—'}
+</div>
+<button onclick="dismissFeedback()" class="small secondary" style="margin-top:16px;width:100%">
+→ Continue Learning
+</button>
+</div>`;
+
+// Add to mistakes for review (but note it was partially correct)
+mistakes.push({...q,timestamp:Date.now(),partial:true});
+
+showToast("Partial Credit",`+${partialPoints} pts. Review the full answer!`,"warning");
+
+}else{
+// WRONG ANSWER
+consecutiveCorrect=0;
+stats.incorrect++;
+const pointsLost=5;
+stats.points=Math.max(0,stats.points-pointsLost);
+
+document.getElementById('quizFeedback').innerHTML=`
+<div class="quiz-feedback incorrect">
+<div style="font-size:24px;margin-bottom:8px">✗ Not Quite</div>
+<div style="font-size:14px;margin-bottom:8px">You wrote: "${userAnswer}"</div>
+<div style="font-size:16px;margin-bottom:12px">Correct answer: <strong>"${q.w}"</strong></div>
+<div style="font-size:16px;font-weight:700;color:#dc2626">-${pointsLost} points</div>
+<div style="margin-top:16px;padding:16px;background:rgba(239,68,68,0.1);border-radius:12px">
+<div style="margin-bottom:8px"><strong>📖 Meaning:</strong> ${q.m||'—'}</div>
+<div style="margin-bottom:8px"><strong>💬 Example:</strong> ${q.e||'—'}</div>
+<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(0,0,0,0.1)">
+<strong>💡 Study Tip:</strong> Try using this word in your own sentence to remember it better!
+</div>
+</div>
+<div style="margin-top:12px;display:flex;gap:8px">
+<button onclick="addToFlashcardReview(${quizIndex})" class="small" style="flex:1;background:#3b82f6">
+📚 Review
+</button>
+<button onclick="dismissFeedback()" class="small secondary" style="flex:1">
+→ Next
+</button>
+</div>
+</div>`;
+
+// Add to mistakes
+mistakes.push({...q,timestamp:Date.now(),userAnswer:userAnswer});
+
+showToast("Incorrect",`-${pointsLost} pts. Keep learning! 💪`,"error");
+}
+
+save();
+checkAchievements();
+updatePointsDisplay();
+
+// Smart auto-advance timing based on answer quality
+// Correct: 2.5s (time to read example)
+// Near-correct: 3.5s (time to see spelling correction)
+// Partial/Wrong: 5s (time to learn from mistake)
+const autoAdvanceDelay=bestMatch.match==='exact'?2500:
+                      bestMatch.match==='close'?3500:
+                      5000;
+
+// Auto-advance after smart delay (can be dismissed early)
+const autoAdvanceTimer=setTimeout(()=>{
+isCheckingAnswer=false;
+nextQuiz();
+},autoAdvanceDelay);
+
+// Store timer ID for manual dismissal
+window.currentQuizTimer=autoAdvanceTimer;
+}
+
+function addToFlashcardReview(index){
+// Mark word for flashcard review
+const word=vocab[index];
+if(!word.needsReview)word.needsReview=true;
+save();
+showToast("Added to Review","This word will appear more in flashcards","success");
+}
+
+function dismissFeedback(){
+// Clear any pending auto-advance timer
+if(window.currentQuizTimer){
+clearTimeout(window.currentQuizTimer);
+window.currentQuizTimer=null;
+}
+// Immediately advance to next question
+isCheckingAnswer=false;
+nextQuiz();
+}
+
+function updatePointsDisplay(){
+// Update points display in header if exists
+const pointsElement=document.getElementById('pointsDisplay');
+if(pointsElement){
+pointsElement.textContent=`${stats.points} pts | Level ${stats.level}`;
+}
+}
+
+function skipQuiz(){
+nextQuiz();
+}
+
+function nextQuiz(){
+quizIndex=(quizIndex+1)%vocab.length;
+document.getElementById('quizFeedback').innerHTML='';
+renderQuiz();
+}
+
+// MISTAKES
+function renderMistakes(){
+const list=document.getElementById('mistakesList');
+if(!list)return;
+
+if(mistakes.length===0){
+list.innerHTML=`
+<div class="empty-state">
+<div class="empty-state-icon">✅</div>
+<div class="empty-state-text">No mistakes yet! Keep learning!</div>
+</div>`;
+return;
+}
+
+// Get unique mistakes
+const uniqueMistakes=[];
+const seen=new Set();
+for(let m of mistakes){
+if(!seen.has(m.w)){
+seen.add(m.w);
+uniqueMistakes.push(m);
+}
+}
+
+list.innerHTML=uniqueMistakes.map(x=>`
+<div class="card">
+<div class="word">${x.w}</div>
+<p>${x.m}</p>
+<small>${x.e}</small>
+</div>
+`).join('');
+}
+
+function reviewMistakes(){
+if(mistakes.length===0){
+showToast("No Mistakes","You haven't made any mistakes yet!","success");
+return;
+}
+// Create flashcard session from mistakes
+const uniqueWords=new Set(mistakes.map(m=>m.w));
+vocab=vocab.filter(v=>uniqueWords.has(v.w));
+flashIndex=0;
+switchView('flash');
+showToast("Review Mode","Studying your mistakes!","warning");
+}
+
+function clearMistakes(){
+if(confirm("Clear all mistakes?")){
+mistakes=[];
+save();
+renderMistakes();
+showToast("Cleared","All mistakes cleared","success");
+}
+}
+
+// STATS
+function renderStats(){
+const grid=document.getElementById('statsGrid');
+if(!grid)return;
+
+const totalWords=vocab.length;
+const favorites=vocab.filter(x=>x.f).length;
+const mistakeCount=mistakes.length;
+const accuracy=stats.incorrect+stats.correct>0?
+Math.round((stats.correct/(stats.correct+stats.incorrect))*100):0;
+
+grid.innerHTML=`
+<div class="stat-card">
+<span class="stat-value">${stats.points||0}</span>
+<span class="stat-label">Total Points</span>
+</div>
+<div class="stat-card" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed)">
+<span class="stat-value">Level ${stats.level||1}</span>
+<span class="stat-label">Current Level</span>
+</div>
+<div class="stat-card">
+<span class="stat-value">${stats.coins||0} 🪙</span>
+<span class="stat-label">Coins Earned</span>
+</div>
+<div class="stat-card">
+<span class="stat-value">${accuracy}%</span>
+<span class="stat-label">Accuracy</span>
+</div>
+<div class="stat-card" style="background:linear-gradient(135deg,#06b6d4,#0891b2)">
+<span class="stat-value">${totalWords}</span>
+<span class="stat-label">Total Words</span>
+</div>
+<div class="stat-card" style="background:linear-gradient(135deg,#f59e0b,#d97706)">
+<span class="stat-value">${favorites}</span>
+<span class="stat-label">Favorites</span>
+</div>
+<div class="stat-card" style="background:linear-gradient(135deg,#ef4444,#dc2626)">
+<span class="stat-value">${mistakeCount}</span>
+<span class="stat-label">To Review</span>
+</div>
+<div class="stat-card" style="background:linear-gradient(135deg,#ec4899,#db2777)">
+<span class="stat-value">${consecutiveCorrect}</span>
+<span class="stat-label">Current Streak</span>
+</div>
+`;
+
+// Update progress bar
+const progress=totalWords>0?Math.min((totalWords/100)*100,100):0;
+const fill=document.getElementById('progressFill');
+if(fill){
+fill.style.width=progress+'%';
+}
+
+const studyDays=document.getElementById('totalStudyDays');
+if(studyDays){
+studyDays.textContent=stats.streak||0;
+}
+
+// Analytics
+const analytics=document.getElementById('analyticsChart');
+if(analytics){
+const totalQuizzes=stats.correct+stats.incorrect;
+const avgPoints=totalQuizzes>0?Math.round(stats.points/totalQuizzes):0;
+analytics.innerHTML=`
+<div style="padding:20px">
+<p><strong>Quiz Statistics</strong></p>
+<p>✓ Correct Answers: ${stats.correct}</p>
+<p>✗ Incorrect Answers: ${stats.incorrect}</p>
+<p>📊 Total Attempts: ${totalQuizzes}</p>
+<p>⭐ Average Points per Quiz: ${avgPoints}</p>
+<p>🏆 Highest Streak: ${stats.highestStreak||consecutiveCorrect||0}</p>
+<div style="margin-top:20px;padding:16px;background:var(--bg);border-radius:12px">
+<strong>Level Progress</strong>
+<div class="progress-bar" style="margin-top:10px">
+<div class="progress-fill" style="width:${((stats.points%500)/500)*100}%"></div>
+</div>
+<p style="text-align:center;margin-top:8px;font-size:14px">
+${stats.points%500}/500 points to Level ${(stats.level||1)+1}
+</p>
+</div>
+</div>
+`;
+}
+}
+
+// ACHIEVEMENTS
+const achievementsList=[
+{id:'first',name:'First Word',icon:'🌱',desc:'Add your first word',check:()=>vocab.length>=1},
+{id:'learner',name:'Learner',icon:'💪',desc:'Add 50 words',check:()=>vocab.length>=50},
+{id:'dedicated',name:'Dedicated',icon:'😎',desc:'Add 200 words',check:()=>vocab.length>=200},
+{id:'scholar',name:'Scholar',icon:'🎓',desc:'Add 500 words',check:()=>vocab.length>=500},
+{id:'quizmaster',name:'Quiz Master',icon:'🧠',desc:'Complete 100 quizzes',check:()=>(stats.correct+stats.incorrect)>=100},
+{id:'perfect',name:'Perfect Score',icon:'💯',desc:'Get 50 correct in a row',check:()=>stats.highestStreak>=50},
+{id:'week',name:'Week Streak',icon:'🎖️',desc:'Daily study for 7 days',check:()=>stats.streak>=7},
+{id:'champion',name:'Champion',icon:'🏆',desc:'Daily study for 30 days straight',check:()=>stats.streak>=30},
+];
+
+function checkAchievements(){
+achievementsList.forEach(a=>{
+if(a.check()&&!achievements.includes(a.id)){
+achievements.push(a.id);
+save();
+showToast("Achievement Unlocked!",`${a.icon} ${a.name}`,"success");
+}
+});
+}
+
+function renderAchievements(){
+const grid=document.getElementById('achievementGrid');
+if(!grid)return;
+
+grid.innerHTML=achievementsList.map(a=>{
+const unlocked=achievements.includes(a.id);
+return `
+<div class="achievement ${unlocked?'unlocked':''}">
+<div class="achievement-icon">${a.icon}</div>
+<div class="achievement-name">${a.name}</div>
+<div style="font-size:11px;opacity:0.7;margin-top:4px">${a.desc}</div>
+</div>
+`;
+}).join('');
+}
+
+// STREAK
+function updateStreak(){
+const today=new Date().toDateString();
+if(stats.lastStudy!==today){
+stats.streak=(stats.streak||0)+1;
+stats.lastStudy=today;
+save();
+updateStreakDisplay();
+}
+}
+
+function updateStreakDisplay(){
+const badge=document.getElementById('streakBadge');
+const days=document.getElementById('streakDays');
+if(stats.streak>0){
+badge.classList.remove('hidden');
+days.textContent=stats.streak+' day'+(stats.streak>1?'s':'');
+}else{
+badge.classList.add('hidden');
+}
+}
+
+// TOAST NOTIFICATIONS
+function showToast(title,message,type='success'){
+const container=document.getElementById('toastContainer');
+const toast=document.createElement('div');
+toast.className=`toast ${type}`;
+toast.innerHTML=`
+<div class="toast-title">${title}</div>
+<div class="toast-message">${message}</div>
+`;
+container.appendChild(toast);
+setTimeout(()=>toast.remove(),3000);
+}
+
+// THEME
+function toggleTheme(){
+const current=document.body.dataset.theme;
+document.body.dataset.theme=current==="dark"?"":"dark";
+localStorage.setItem("theme",document.body.dataset.theme);
+}
+
+// NOTES
+function toggleNotes(){
+const panel=document.getElementById('notesPanel');
+panel.classList.toggle('active');
+if(panel.classList.contains('active')){
+renderNotes();
+}
+}
+
+function saveNote(){
+const input=document.getElementById('noteInput');
+if(!input.value.trim())return;
+notes.unshift({text:input.value,date:Date.now()});
+save();
+input.value='';
+renderNotes();
+showToast("Saved","Note saved!","success");
+}
+
+function deleteNote(i){
+notes.splice(i,1);
+save();
+renderNotes();
+}
+
+function renderNotes(){
+const list=document.getElementById('notesList');
+if(notes.length===0){
+list.innerHTML='<p style="opacity:0.6;text-align:center">No notes yet</p>';
+return;
+}
+list.innerHTML=notes.map((n,i)=>`
+<div class="note-item">
+<span class="delete-note" onclick="deleteNote(${i})">🗑️</span>
+${n.text}
+<div style="font-size:11px;opacity:0.6;margin-top:6px">
+${new Date(n.date).toLocaleDateString()}
+</div>
+</div>
+`).join('');
+}
+
+// EXPORT/IMPORT
+function exportJSON(){
+const data=JSON.stringify(vocab,null,2);
+const blob=new Blob([data],{type:'application/json'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='vocaboost-data.json';
+a.click();
+showToast("Exported","Data exported as JSON","success");
+}
+
+function exportCSV(){
+let csv='Word,Meaning,Example,Grammar,Topic,Skill,Difficulty\n';
+vocab.forEach(v=>{
+csv+=`"${v.w}","${v.m}","${v.e}","${v.g}","${v.t}","${v.s}","${v.d}"\n`;
+});
+const blob=new Blob([csv],{type:'text/csv'});
+const url=URL.createObjectURL(blob);
+const a=document.createElement('a');
+a.href=url;
+a.download='vocaboost-data.csv';
+a.click();
+showToast("Exported","Data exported as CSV","success");
+}
+
+function importData(){
+document.getElementById('importFile').click();
+}
+
+function handleImport(event){
+const file=event.target.files[0];
+if(!file)return;
+
+const reader=new FileReader();
+reader.onload=(e)=>{
+try{
+const data=JSON.parse(e.target.result);
+if(Array.isArray(data)){
+vocab=data;
+save();
+render();
+showToast("Imported","Data imported successfully!","success");
+}else{
+showToast("Error","Invalid file format","error");
+}
+}catch(err){
+showToast("Error","Failed to import file","error");
+}
+};
+reader.readAsText(file);
+}
+
+function clearAllData(){
+if(confirm("⚠️ This will delete ALL your data. Are you sure?")){
+if(confirm("This action cannot be undone. Continue?")){
+vocab=[];
+mistakes=[];
+notes=[];
+stats={correct:0,incorrect:0,streak:0,lastStudy:''};
+achievements=[];
+save();
+render();
+showToast("Cleared","All data cleared","warning");
+}
+}
+}
+
+// TEXT TO SPEECH
+function speakWord(word){
+if('speechSynthesis'in window){
+const utterance=new SpeechSynthesisUtterance(word);
+utterance.lang='en-US';
+speechSynthesis.speak(utterance);
+}else{
+showToast("Not Supported","Text-to-speech not available","error");
+}
+}
+
+// NOTIFICATIONS
+let notificationSchedule=[];
+let notificationIndex=0;
+
+// Load notification configuration
+async function loadNotificationConfig(){
+try{
+const response=await fetch('./notifications.js');
+const text=await response.text();
+eval(text);
+return typeof getRandomNotification!=='undefined';
+}catch(err){
+console.log('Notifications config not loaded, using fallback');
+return false;
+}
+}
+
+function requestNotificationPermission(){
+if('Notification'in window&&Notification.permission==='default'){
+Notification.requestPermission().then(permission=>{
+if(permission==='granted'){
+showToast("Notifications Enabled","You'll receive 100 daily vocabulary reminders!","success");
+scheduleAllNotifications();
+// Show welcome notification
+showInstantNotification();
+}
+});
+}else if('Notification'in window&&Notification.permission==='granted'){
+scheduleAllNotifications();
+}
+}
+
+function showInstantNotification(){
+if('Notification'in window&&Notification.permission==='granted'){
+const greetings=[
+{title:"🎉 Welcome to VocaBoost!",body:"Get ready for daily vocabulary boosts!"},
+{title:"📚 Notifications Activated",body:"You'll receive smart reminders throughout the day."},
+{title:"✨ Let's Begin!",body:"Your IELTS vocabulary journey starts now!"}
+];
+const msg=greetings[Math.floor(Math.random()*greetings.length)];
+new Notification(msg.title,{
+body:msg.body,
+icon:'./icon-192.png',
+badge:'./icon-192.png',
+tag:'welcome'
+});
+}
+}
+
+// Schedule 100+ notifications throughout the day
+function scheduleAllNotifications(){
+if('Notification'in window&&Notification.permission!=='granted')return;
+
+// Clear existing schedules
+notificationSchedule.forEach(timer=>clearTimeout(timer));
+notificationSchedule=[];
+
+// Daily schedule - 11 primary slots
+const schedule=[
+{hour:6,minute:0},{hour:7,minute:30},{hour:9,minute:0},
+{hour:10,minute:30},{hour:12,minute:0},{hour:13,minute:30},
+{hour:15,minute:0},{hour:16,minute:30},{hour:18,minute:0},
+{hour:19,minute:30},{hour:21,minute:0}
+];
+
+const now=new Date();
+const notifications=generateNotificationMessages();
+
+schedule.forEach((time,slotIndex)=>{
+const notifTime=new Date();
+notifTime.setHours(time.hour,time.minute,0,0);
+
+if(notifTime>now){
+const delay=notifTime-now;
+const timer=setTimeout(()=>{
+showScheduledNotification(slotIndex,notifications);
+},delay);
+notificationSchedule.push(timer);
+}
+});
+
+// Send schedule to service worker
+if(navigator.serviceWorker.controller){
+navigator.serviceWorker.controller.postMessage({
+type:'SCHEDULE_NOTIFICATIONS',
+vocab:vocab
+});
+}
+}
+
+// Generate 100 diverse notification messages
+function generateNotificationMessages(){
+const messages=[
+// Motivational (20)
+{title:"🌟 Daily Reminder",body:"Consistency is key! Review your vocabulary today."},
+{title:"💪 Keep Going",body:"Every word you learn brings you closer to your IELTS goal!"},
+{title:"🎯 Stay Focused",body:"Your dedication to learning will pay off!"},
+{title:"📚 Study Time",body:"Time to expand your vocabulary! Open VocaBoost now."},
+{title:"✨ You're Doing Great",body:"Keep up the excellent work with your IELTS preparation!"},
+{title:"🔥 Streak Alert",body:"Don't break your learning streak! Study now."},
+{title:"🎓 Knowledge Building",body:"Each word mastered is a step toward success!"},
+{title:"💡 Quick Practice",body:"Spend 5 minutes reviewing flashcards today!"},
+{title:"🌈 Progress Update",body:"Check your progress and celebrate your achievements!"},
+{title:"🚀 IELTS Success",body:"Master vocabulary, master IELTS! Keep learning."},
+{title:"📖 Daily Challenge",body:"Challenge yourself with a quick quiz today!"},
+{title:"⭐ Vocabulary Boost",body:"Time to boost your word power! Review now."},
+{title:"🎯 Goal Reminder",body:"Your IELTS goals are within reach! Stay committed."},
+{title:"💫 Learning Moment",body:"Great minds never stop learning. Continue your journey!"},
+{title:"🌟 Excellence Awaits",body:"Your vocabulary excellence journey continues today!"},
+{title:"💎 Daily Gem",body:"Discover the power of one new word today!"},
+{title:"🎪 Learning Joy",body:"Make learning enjoyable - review your favorite words!"},
+{title:"🌺 Bloom Daily",body:"Your vocabulary skills bloom with daily practice!"},
+{title:"🎨 Creative Learning",body:"Use colorful methods to remember new words!"},
+{title:"🏃 Sprint Forward",body:"Every study session is progress!"},
+
+// Practice Prompts (15)
+{title:"🎴 Flashcard Time",body:"Review 5 flashcards to reinforce your learning!"},
+{title:"🧠 Quiz Challenge",body:"Test yourself with a quick quiz session!"},
+{title:"📝 Writing Practice",body:"Use your new words in sentences today!"},
+{title:"🗣️ Speaking Drill",body:"Practice pronouncing your vocabulary words!"},
+{title:"🎯 Targeted Review",body:"Focus on your mistake words for improvement!"},
+{title:"📊 Progress Check",body:"Review your statistics and set new goals!"},
+{title:"⭐ Favorites Review",body:"Go through your favorite words collection!"},
+{title:"🔄 Mixed Practice",body:"Combine flashcards and quizzes for best results!"},
+{title:"📚 Topic Focus",body:"Master words from one topic category today!"},
+{title:"💪 Difficulty Challenge",body:"Challenge yourself with advanced vocabulary!"},
+{title:"🎲 Random Quiz",body:"Try a random quiz to test your knowledge!"},
+{title:"📖 Reading Exercise",body:"Read example sentences to understand context!"},
+{title:"✍️ Writing Task",body:"Create sentences using today's vocabulary!"},
+{title:"🎤 Pronunciation",body:"Practice speaking words aloud for fluency!"},
+{title:"🔍 Detail Study",body:"Study word meanings in depth today!"},
+
+// IELTS Tips (15)
+{title:"💡 IELTS Tip",body:"Use a variety of vocabulary to improve your band score!"},
+{title:"📝 Writing Tip",body:"Paraphrasing is crucial in IELTS Writing Task 2!"},
+{title:"🗣️ Speaking Tip",body:"Use less common vocabulary naturally in your responses."},
+{title:"👂 Listening Tip",body:"Expand vocabulary to understand diverse accents better!"},
+{title:"📖 Reading Tip",body:"Strong vocabulary speeds up your reading comprehension!"},
+{title:"✍️ Task 2 Tip",body:"Academic vocabulary enhances your essay quality!"},
+{title:"🎯 Band 7+ Tip",body:"Collocations show language mastery!"},
+{title:"📊 Task 1 Tip",body:"Learn vocabulary for describing trends and data!"},
+{title:"🌟 Overall Tip",body:"Context matters! Learn words with their common uses."},
+{title:"💬 Speaking Band",body:"Demonstrate vocabulary range across all topics!"},
+{title:"📚 Lexical Resource",body:"Variety in vocabulary = higher band scores!"},
+{title:"🎓 Academic Words",body:"Master academic word lists for writing success!"},
+{title:"🔤 Word Choice",body:"Precise vocabulary shows language control!"},
+{title:"📖 Synonyms",body:"Learn multiple ways to express the same idea!"},
+{title:"✨ Natural Usage",body:"Use words naturally, not forced!"},
+
+// Learning Strategies (15)
+{title:"🎯 Learning Strategy",body:"Group words by theme for better retention!"},
+{title:"🔄 Spaced Repetition",body:"Review at intervals for long-term memory!"},
+{title:"📝 Context Learning",body:"Always learn words in context, not isolation!"},
+{title:"🎨 Visualization",body:"Create mental images to remember vocabulary!"},
+{title:"🗣️ Active Usage",body:"Use new words in conversation to cement them!"},
+{title:"📚 Reading Power",body:"Read extensively to encounter words naturally!"},
+{title:"✍️ Writing Practice",body:"Write sentences using your new vocabulary!"},
+{title:"🎧 Audio Learning",body:"Listen to pronunciation and practice speaking!"},
+{title:"🔗 Word Families",body:"Learn related word forms together!"},
+{title:"📖 Etymology",body:"Word origins help remember meanings!"},
+{title:"🧩 Association",body:"Connect new words to things you know!"},
+{title:"🎭 Storytelling",body:"Create stories using new vocabulary!"},
+{title:"🏷️ Labeling",body:"Label objects around you with vocabulary!"},
+{title:"🎮 Gamification",body:"Make learning a game with quizzes and challenges!"},
+{title:"👥 Social Learning",body:"Discuss words with study partners!"},
+
+// Time-based Greetings (15)
+{title:"☀️ Good Morning",body:"Start your day with vocabulary learning!"},
+{title:"🌤️ Good Afternoon",body:"Afternoon brain boost! Review your words."},
+{title:"🌆 Good Evening",body:"Evening study session awaits you!"},
+{title:"🌙 Evening Review",body:"Quick review before bed reinforces learning!"},
+{title:"🌅 Dawn Study",body:"Early learning sets a positive tone!"},
+{title:"☕ Morning Boost",body:"Coffee and vocabulary - perfect combination!"},
+{title:"🥪 Lunch Learning",body:"Quick review during your break!"},
+{title:"🌇 Sunset Session",body:"Wind down with some vocabulary practice!"},
+{title:"⭐ Night Owl",body:"Late night study? Every effort counts!"},
+{title:"🌞 Midday",body:"Perfect time for a quick study break!"},
+{title:"🌜 Bedtime",body:"Review before sleep aids memory consolidation!"},
+{title:"🎨 Afternoon Creative",body:"Use afternoon energy for active learning!"},
+{title:"🌠 Night Time",body:"Evening is great for reflection and review!"},
+{title:"🌄 New Day",body:"Every day is a chance to learn more!"},
+{title:"🕐 Any Time",body:"The best time to learn is now!"},
+
+// Achievement & Progress (20)
+{title:"🏆 Achievement Hunt",body:"Unlock new achievements by studying today!"},
+{title:"⭐ Milestone Alert",body:"You're close to your next achievement!"},
+{title:"💯 Perfect Score",body:"Aim for perfection in today's quiz!"},
+{title:"🔥 Streak Power",body:"Your learning streak is impressive!"},
+{title:"📈 Growth Mindset",body:"Track your progress and see improvement!"},
+{title:"🎯 Goal Achievement",body:"Every session brings you closer to success!"},
+{title:"🌟 Excellence Tracker",body:"Check your stats and celebrate progress!"},
+{title:"💪 Commitment Badge",body:"Your dedication deserves recognition!"},
+{title:"🎖️ Victory Lap",body:"Celebrate your learning victories!"},
+{title:"🏅 Champion Spirit",body:"You're a vocabulary champion in making!"},
+{title:"💝 Self Reward",body:"Reward yourself for consistent learning!"},
+{title:"📊 Stats Update",body:"Your numbers tell a success story!"},
+{title:"🎁 Daily Gift",body:"Give yourself the gift of knowledge!"},
+{title:"🌈 Rainbow Progress",body:"See your colorful journey of improvement!"},
+{title:"✨ Sparkle Achievement",body:"You're shining brighter each day!"},
+{title:"🎪 Milestone Party",body:"Celebrate reaching learning milestones!"},
+{title:"🎨 Progress Art",body:"Your learning is a masterpiece in progress!"},
+{title:"🎵 Success Song",body:"Your progress deserves applause!"},
+{title:"🌻 Growth Garden",body:"Watch your knowledge garden grow!"},
+{title:"💫 Star Learner",body:"You're a star in the learning galaxy!"}
+];
+
+return messages;
+}
+
+function showScheduledNotification(slotIndex,notifications){
+if('Notification'in window&&Notification.permission!=='granted')return;
+
+let notification;
+
+// 50% chance to show user's vocabulary word
+if(vocab.length>0&&Math.random()>0.5){
+const randomWord=vocab[Math.floor(Math.random()*vocab.length)];
+notification={
+title:`📚 Word of the Hour: ${randomWord.w}`,
+body:randomWord.m||'Tap to review this word!',
+icon:'./icon-192.png',
+badge:'./icon-192.png',
+tag:'word-reminder'
+};
+}else{
+// Show message from pool
+const msgIndex=(slotIndex*9+new Date().getDate())%notifications.length;
+const msg=notifications[msgIndex];
+notification={
+title:msg.title,
+body:msg.body,
+icon:'./icon-192.png',
+badge:'./icon-192.png',
+tag:'study-reminder'
+};
+}
+
+new Notification(notification.title,{
+body:notification.body,
+icon:notification.icon,
+badge:notification.badge,
+tag:notification.tag,
+requireInteraction:false,
+vibrate:[200,100,200]
+});
+
+// Also send to service worker
+if(navigator.serviceWorker.controller){
+navigator.serviceWorker.controller.postMessage({
+type:'SHOW_NOTIFICATION',
+title:notification.title,
+body:notification.body,
+tag:notification.tag
+});
+}
+}
+
+function scheduleNotifications(){
+if('Notification'in window&&Notification.permission==='granted'){
+// Main scheduling happens in scheduleAllNotifications
+// This keeps compatibility with old code
+scheduleAllNotifications();
+}
+}
+
+// KEYBOARD SHORTCUTS
+document.addEventListener('keydown',(e)=>{
+if(e.ctrlKey&&e.key==='n'){
+e.preventDefault();
+toggleNotes();
+}
+if(e.key==='Enter'&&document.getElementById('ans')){
+checkQuiz();
+}
+});
+
+// INIT
+document.body.dataset.theme=localStorage.getItem("theme")||"";
+switchView("list");
+updateStreakDisplay();
+updatePointsDisplay();
+renderNotes();
+
+// Request notification permission after 3 seconds
+setTimeout(requestNotificationPermission,3000);
+
+// Service Worker with Notifications
+if("serviceWorker"in navigator){
+window.addEventListener("load",()=>{
+navigator.serviceWorker.register("./service-worker.js",{scope:"./"})
+.then((registration)=>{
+console.log('SW registered');
+// Schedule notifications through service worker
+if(registration.active){
+registration.active.postMessage({
+type:'SCHEDULE_NOTIFICATIONS',
+vocab:vocab
+});
+}
+})
+.catch(err=>console.log('SW error:',err));
+});
+}
+
+// Scroll animations
+const observerOptions={
+threshold:0.1,
+rootMargin:'0px 0px -50px 0px'
+};
+
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('visible');
+}
+});
+},observerOptions);
+
+document.querySelectorAll('.card').forEach(el=>{
+el.classList.add('scroll-fade');
+observer.observe(el);
+});
+</script>
+
+</body>
+</html>
